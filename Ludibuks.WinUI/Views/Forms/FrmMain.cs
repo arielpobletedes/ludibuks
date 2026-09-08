@@ -31,10 +31,18 @@ public partial class FrmMain : Form, IMainView
         this.btnActionOpenFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
         this.btnOpenSelectedFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
 
+        this.btnActionGenre.Click += (s, e) => OpenGenresDialog();
         this.btnActionAuthors.Click += (s, e) => OpenAuthorsDialog();
         this.btnResetFilter.Click += (s, e) => ResetFilters();
-    }
+    }    
 
+    public void OpenGenresDialog()
+    {
+        using var scope = _serviceProvider.CreateScope();
+        var presenter = scope.ServiceProvider.GetRequiredService<GenrePresenter>();
+        var frmGenres = scope.ServiceProvider.GetRequiredService<FrmGenres>();
+        frmGenres.ShowDialog(this);
+    }
     public void OpenAuthorsDialog()
     {
         using var scope = _serviceProvider.CreateScope();
