@@ -4,11 +4,12 @@ using System.ComponentModel;
 
 namespace Ludibuks.WinUI.Views.Forms;
 
-public partial class FrmBooks : Form, IBookView
+public partial class FrmBooks : System.Windows.Forms.Form, IBookView
 {
     public FrmBooks()
     {
         InitializeComponent();
+
         // Conexión interna de eventos de controles a los eventos de la vista
         this.Load += (s, e) => ViewLoaded?.Invoke(this, EventArgs.Empty);
         this.btnSave.Click += (s, e) => SaveClicked?.Invoke(this, EventArgs.Empty);
@@ -47,8 +48,8 @@ public partial class FrmBooks : Form, IBookView
 
     public void ClearInputs()
     {
-        txtTitle.Clear();
-        txtIsbn.Clear();
+        txtTitle.Text = string.Empty;
+        txtIsbn.Text = string.Empty;
         numPrice.Value = 0;
 
         // Desmarcar todos los checks del control
@@ -60,7 +61,6 @@ public partial class FrmBooks : Form, IBookView
 
     public void SetAuthorList(IReadOnlyList<AuthorLookupDto> authors)
     {
-        // Enlazar los objetos al CheckedListBox
         clbAuthors.DataSource = authors.ToList();
         clbAuthors.DisplayMember = nameof(AuthorLookupDto.Name);
         clbAuthors.ValueMember = nameof(AuthorLookupDto.Id);
@@ -68,7 +68,6 @@ public partial class FrmBooks : Form, IBookView
 
     public void SetBookList(IReadOnlyList<BookDto> books)
     {
-        // Si muestras los autores concatenados en el DataGridView:
         var viewModels = books.Select(b => new
         {
             b.Id,
