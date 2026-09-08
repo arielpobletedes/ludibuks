@@ -1,4 +1,4 @@
-﻿using Ludibuks.Application.DTOs;
+using Ludibuks.Application.DTOs;
 using Ludibuks.WinUI.Views.Interfaces;
 using System.ComponentModel;
 
@@ -27,10 +27,10 @@ public partial class FrmBooks : Form, IBookView
     public decimal PriceInput { get => numPrice.Value; set => numPrice.Value = value; }
 
     [Browsable(false)]
-    public event EventHandler ViewLoaded;
+    public event EventHandler? ViewLoaded;
 
     [Browsable(false)]
-    public event EventHandler SaveClicked;
+    public event EventHandler? SaveClicked;
 
     public void ClearInputs()
     {

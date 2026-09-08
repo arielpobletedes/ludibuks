@@ -1,4 +1,4 @@
-﻿using Ludibuks.Infrastructure.Data.Context;
+using Ludibuks.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

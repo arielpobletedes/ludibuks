@@ -33,8 +33,9 @@ namespace Ludibuks.WinUI
             services.AddScoped<IBookAppService, BookAppService>();
 
             // 3. UI (MVP)
-            services.AddTransient<IBookView, FrmBooks>();
-            services.AddTransient<BookPresenter>();
+            services.AddSingleton<FrmBooks>();
+            services.AddSingleton<IBookView>(sp => sp.GetRequiredService<FrmBooks>());
+            services.AddSingleton<BookPresenter>();
 
             using var serviceProvider = services.BuildServiceProvider();
 
@@ -50,9 +51,9 @@ namespace Ludibuks.WinUI
                 return;
             }
 
-            // 5. Instanciar formulario y enlazar con su Presenter
-            var form = (Form)serviceProvider.GetRequiredService<IBookView>();
-            serviceProvider.GetRequiredService<BookPresenter>();
+            // 5. Resolver el Presenter primero (instancia FrmBooks y conecta los eventos), luego obtener el mismo Form para ejecutarlo
+            var presenter = serviceProvider.GetRequiredService<BookPresenter>();
+            var form = serviceProvider.GetRequiredService<FrmBooks>();
 
             System.Windows.Forms.Application.Run(form);
         }
