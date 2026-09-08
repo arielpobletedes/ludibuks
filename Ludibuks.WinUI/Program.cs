@@ -41,6 +41,10 @@ namespace Ludibuks.WinUI
             services.AddSingleton<IBookView>(sp => sp.GetRequiredService<FrmBooks>());
             services.AddSingleton<BookPresenter>();
 
+            services.AddTransient<FrmAuthors>();
+            services.AddTransient<IAuthorView>(sp => sp.GetRequiredService<FrmAuthors>());
+            services.AddTransient<AuthorPresenter>();
+
             services.AddSingleton<FrmMain>();
             services.AddSingleton<IMainView>(sp => sp.GetRequiredService<FrmMain>());
             services.AddSingleton<MainPresenter>();

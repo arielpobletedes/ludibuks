@@ -1,4 +1,5 @@
 using Ludibuks.Application.DTOs;
+using Ludibuks.WinUI.Presenters;
 using Ludibuks.WinUI.Views.Interfaces;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -29,8 +30,16 @@ public partial class FrmMain : Form, IMainView
         this.btnActionOpenFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
         this.btnOpenSelectedFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
 
-        this.btnActionAuthors.Click += (s, e) => OpenAddBookDialog();
+        this.btnActionAuthors.Click += (s, e) => OpenAuthorsDialog();
         this.btnResetFilter.Click += (s, e) => ResetFilters();
+    }
+
+    public void OpenAuthorsDialog()
+    {
+        using var scope = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.CreateScope(_serviceProvider);
+        var presenter = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<AuthorPresenter>(scope.ServiceProvider);
+        var frmAuthors = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<FrmAuthors>(scope.ServiceProvider);
+        frmAuthors.ShowDialog(this);
     }
 
     [Browsable(false)]
