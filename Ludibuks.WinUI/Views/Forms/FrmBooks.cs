@@ -41,7 +41,18 @@ public partial class FrmBooks : System.Windows.Forms.Form, IBookView
         }
     }
 
-    public IReadOnlyList<int> SelectedGenreIds => throw new NotImplementedException();
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public IReadOnlyList<int> SelectedGenreIds
+    {
+        get
+        {
+            return clbGenres.CheckedItems
+                .OfType<GenreLookupDto>()
+                .Select(a => a.Id)
+                .ToList();
+        }
+    }
 
     [Browsable(false)]
     public event EventHandler? ViewLoaded;

@@ -63,12 +63,12 @@ public class BookAppService : IBookAppService
 
     async Task<IReadOnlyList<Genre>> ExistingGenres(CreateBookDto dto, CancellationToken ct = default)
     {
-        if (dto.AuthorIds is null || dto.AuthorIds.Count == 0)
+        if (dto.GenreIds is null || dto.GenreIds.Count == 0)
         {
             throw new InvalidOperationException("Un libro debe tener al menos un autor asociado.");
         }
-
-        var existingGenres = await _genreRepository.GetByIdsAsync(dto.AuthorIds, ct);
+            
+        var existingGenres = await _genreRepository.GetByIdsAsync(dto.GenreIds, ct);
 
         if (existingGenres.Count != dto.GenreIds.Distinct().Count())
         {
