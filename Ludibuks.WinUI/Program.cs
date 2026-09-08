@@ -37,9 +37,13 @@ namespace Ludibuks.WinUI
             services.AddScoped<IGenreAppService, GenreAppService>();
 
             // 3. UI (MVP)
-            services.AddSingleton<FrmBooks>();
-            services.AddSingleton<IBookView>(sp => sp.GetRequiredService<FrmBooks>());
-            services.AddSingleton<BookPresenter>();
+            services.AddScoped<FrmBooks>();
+            services.AddScoped<IBookView>(sp => sp.GetRequiredService<FrmBooks>());
+            services.AddScoped<BookPresenter>();
+
+            services.AddScoped<FrmAuthors>();
+            services.AddScoped<IAuthorView>(sp => sp.GetRequiredService<FrmAuthors>());
+            services.AddScoped<AuthorPresenter>();
 
             services.AddSingleton<FrmMain>();
             services.AddSingleton<IMainView>(sp => sp.GetRequiredService<FrmMain>());
