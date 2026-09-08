@@ -7,7 +7,10 @@ public class Book
     public string Isbn { get; private set; } = string.Empty;
     public decimal Price { get; private set; }
 
-    // Constructor para EF Core y creación
+    // Relación Many-to-Many con Author
+    private readonly List<Author> _authors = new();
+    public IReadOnlyCollection<Author> Authors => _authors.AsReadOnly();
+
     protected Book() { }
 
     public Book(string title, string isbn, decimal price)
@@ -18,9 +21,22 @@ public class Book
         Price = price;
     }
 
-    public void UpdatePrice(decimal newPrice)
+    public void AddAuthor(Author author)
     {
-        if (newPrice < 0) throw new ArgumentException("El precio no puede ser negativo.");
-        Price = newPrice;
+        ArgumentNullException.ThrowIfNull(author);
+
+        if (!_authors.Any(a => a.Id == author.Id && author.Id != 0))
+        {
+            _authors.Add(author);
+        }
+    }
+
+    public void RemoveAuthor(int authorId)
+    {
+        var author = _authors.FirstOrDefault(a => a.Id == authorId);
+        if (author != null)
+        {
+            _authors.Remove(author);
+        }
     }
 }

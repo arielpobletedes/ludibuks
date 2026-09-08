@@ -27,6 +27,19 @@ public partial class FrmBooks : Form, IBookView
     public decimal PriceInput { get => numPrice.Value; set => numPrice.Value = value; }
 
     [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public IReadOnlyList<int> SelectedAuthorIds
+    {
+        get
+        {
+            return clbAuthors.CheckedItems
+                .OfType<AuthorLookupDto>()
+                .Select(a => a.Id)
+                .ToList();
+        }
+    }
+
+    [Browsable(false)]
     public event EventHandler? ViewLoaded;
 
     [Browsable(false)]
@@ -37,11 +50,35 @@ public partial class FrmBooks : Form, IBookView
         txtTitle.Clear();
         txtIsbn.Clear();
         numPrice.Value = 0;
+
+        // Desmarcar todos los checks del control
+        for (int i = 0; i < clbAuthors.Items.Count; i++)
+        {
+            clbAuthors.SetItemChecked(i, false);
+        }
+    }
+
+    public void SetAuthorList(IReadOnlyList<AuthorLookupDto> authors)
+    {
+        // Enlazar los objetos al CheckedListBox
+        clbAuthors.DataSource = authors.ToList();
+        clbAuthors.DisplayMember = nameof(AuthorLookupDto.Name);
+        clbAuthors.ValueMember = nameof(AuthorLookupDto.Id);
     }
 
     public void SetBookList(IReadOnlyList<BookDto> books)
     {
-        gridBooks.DataSource = books.ToList();
+        // Si muestras los autores concatenados en el DataGridView:
+        var viewModels = books.Select(b => new
+        {
+            b.Id,
+            b.Title,
+            b.Isbn,
+            Price = b.Price.ToString("C2"),
+            Authors = string.Join(", ", b.Authors.Select(a => a.Name))
+        }).ToList();
+
+        gridBooks.DataSource = viewModels;
     }
 
     public void ShowMessage(string message, bool isError = false)
