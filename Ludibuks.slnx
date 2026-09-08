@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="Lubikus.Core/Lubikus.Core.csproj" Id="54059d8f-4f75-4ad7-9a5f-46fd5130c96d" />
+  <Project Path="Ludibuks.Application/Ludibuks.Application.csproj" Id="5a662ce1-fcb1-49cb-b1ee-81e3cee0350c" />
+  <Project Path="Ludibuks.Infrastructure/Ludibuks.Infrastructure.csproj" Id="a0e1b504-a074-4b81-88ea-c5d1124f2a50" />
   <Project Path="Ludibuks.WinUI/Ludibuks.WinUI.csproj" />
 </Solution>
