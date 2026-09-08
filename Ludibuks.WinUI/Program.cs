@@ -28,9 +28,11 @@ namespace Ludibuks.WinUI
             services.AddDbContext<LudibuksDbContext>(options =>
                 options.UseSqlite(DatabasePathHelper.GetConnectionString()));
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
 
             // 2. Aplicación
             services.AddScoped<IBookAppService, BookAppService>();
+            services.AddScoped<IAuthorAppService, AuthorAppService>();
 
             // 3. UI (MVP)
             services.AddSingleton<FrmBooks>();

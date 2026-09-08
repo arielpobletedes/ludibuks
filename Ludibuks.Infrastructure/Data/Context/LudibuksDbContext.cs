@@ -5,7 +5,8 @@ namespace Ludibuks.Infrastructure.Data.Context;
 
 public class LudibuksDbContext : DbContext
 {
-    public DbSet<Book> Books => Set<Book>();
+    public DbSet<Book> Books => Set<Book>(); 
+    public DbSet<Author> Authors => Set<Author>();
 
     public LudibuksDbContext(DbContextOptions<LudibuksDbContext> options) : base(options) { }
 

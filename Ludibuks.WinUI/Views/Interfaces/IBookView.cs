@@ -8,7 +8,13 @@ public interface IBookView
     string IsbnInput { get; set; }
     decimal PriceInput { get; set; }
 
+    // Propiedad para leer los IDs marcados en el CheckedListBox
+    IReadOnlyList<int> SelectedAuthorIds { get; }
+
+    // Métodos para cargar datos en la UI
+    void SetAuthorList(IReadOnlyList<AuthorLookupDto> authors);
     void SetBookList(IReadOnlyList<BookDto> books);
+
     void ShowMessage(string message, bool isError = false);
     void ClearInputs();
 

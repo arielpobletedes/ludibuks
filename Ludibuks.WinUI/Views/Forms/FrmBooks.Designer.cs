@@ -36,6 +36,7 @@
             label3 = new Label();
             numPrice = new NumericUpDown();
             btnSave = new Button();
+            clbAuthors = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)gridBooks).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numPrice).BeginInit();
             SuspendLayout();
@@ -43,10 +44,10 @@
             // gridBooks
             // 
             gridBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridBooks.Location = new Point(78, 141);
+            gridBooks.Location = new Point(22, 163);
             gridBooks.Name = "gridBooks";
             gridBooks.RowHeadersWidth = 62;
-            gridBooks.Size = new Size(691, 225);
+            gridBooks.Size = new Size(391, 225);
             gridBooks.TabIndex = 0;
             // 
             // txtTitle
@@ -99,18 +100,27 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(539, 36);
+            btnSave.Location = new Point(657, 25);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(112, 34);
             btnSave.TabIndex = 8;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             // 
+            // clbAuthors
+            // 
+            clbAuthors.FormattingEnabled = true;
+            clbAuthors.Location = new Point(454, 22);
+            clbAuthors.Name = "clbAuthors";
+            clbAuthors.Size = new Size(180, 368);
+            clbAuthors.TabIndex = 9;
+            // 
             // FrmBooks
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(clbAuthors);
             Controls.Add(btnSave);
             Controls.Add(numPrice);
             Controls.Add(label3);
@@ -137,5 +147,6 @@
         private Label label3;
         private NumericUpDown numPrice;
         private Button btnSave;
+        private CheckedListBox clbAuthors;
     }
 }

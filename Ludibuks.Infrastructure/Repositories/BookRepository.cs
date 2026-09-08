@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Lubikus.Core.Entities;
 using Lubikus.Core.Interfaces.Repositories;
 using Ludibuks.Infrastructure.Data.Context;
@@ -21,8 +21,25 @@ public class BookRepository : IBookRepository
         => await _context.Books.AsNoTracking().ToListAsync(ct);
 
     public async Task AddAsync(Book book, CancellationToken ct = default)
-        => await _context.Books.AddAsync(book, ct);
+    {
+        await _context.Books.AddAsync(book, ct);
+    }
 
     public async Task SaveChangesAsync(CancellationToken ct = default)
         => await _context.SaveChangesAsync(ct);
+
+    public async Task<Book?> GetByIdWithAuthorsAsync(int id, CancellationToken ct = default)
+    {
+        return await _context.Books
+            .Include(b => b.Authors)
+            .FirstOrDefaultAsync(b => b.Id == id, ct);
+    }
+
+    public async Task<IReadOnlyList<Book>> GetAllWithAuthorsAsync(CancellationToken ct = default)
+    {
+        return await _context.Books
+            .Include(b => b.Authors)
+            .AsNoTracking()
+            .ToListAsync(ct);
+    }
 }
