@@ -27,4 +27,36 @@ public class GenreRepository : IGenreRepository
             .AsNoTracking()
             .ToListAsync(ct);
     }
+
+    public async Task<Genre?> GetByIdAsync(int id, CancellationToken ct = default)
+    {
+        return await _context.Genres.FindAsync(new object[] { id }, ct);
+    }
+
+    public async Task<IReadOnlyList<Genre>> GetAllWithBooksAsync(CancellationToken ct = default)
+    {
+        return await _context.Genres
+            .Include(a => a.Books)
+            .AsNoTracking()
+            .ToListAsync(ct);
+    }
+
+    public async Task AddAsync(Genre genre, CancellationToken ct = default)
+    {
+        await _context.Genres.AddAsync(genre, ct);
+    }
+
+    public async Task DeleteAsync(int id, CancellationToken ct = default)
+    {
+        var genre = await _context.Genres.FindAsync(new object[] { id }, ct);
+        if (genre != null)
+        {
+            _context.Genres.Remove(genre);
+        }
+    }
+
+    public async Task SaveChangesAsync(CancellationToken ct = default)
+    {
+        await _context.SaveChangesAsync(ct);
+    }
 }

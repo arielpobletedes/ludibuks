@@ -35,6 +35,7 @@ namespace Ludibuks.WinUI.Views.Forms
             nightControlBox1 = new NightControlBox();
             lblAppTitle = new NightHeaderLabel();
             pnlTopActions = new System.Windows.Forms.Panel();
+            btnActionGenre = new HopeButton();
             btnActionOpenFile = new HopeButton();
             btnActionRefresh = new HopeButton();
             btnActionAuthors = new HopeButton();
@@ -78,9 +79,11 @@ namespace Ludibuks.WinUI.Views.Forms
             nightControlBox1.DisableMaximizeColor = Color.FromArgb(105, 105, 105);
             nightControlBox1.DisableMinimizeColor = Color.FromArgb(105, 105, 105);
             nightControlBox1.EnableCloseColor = Color.FromArgb(160, 160, 160);
+            nightControlBox1.EnableMaximizeButton = true;
             nightControlBox1.EnableMaximizeColor = Color.FromArgb(160, 160, 160);
+            nightControlBox1.EnableMinimizeButton = true;
             nightControlBox1.EnableMinimizeColor = Color.FromArgb(160, 160, 160);
-            nightControlBox1.Location = new Point(1060, 0);
+            nightControlBox1.Location = new Point(1341, 0);
             nightControlBox1.MaximizeHoverColor = Color.FromArgb(15, 255, 255, 255);
             nightControlBox1.MaximizeHoverForeColor = Color.White;
             nightControlBox1.MinimizeHoverColor = Color.FromArgb(15, 255, 255, 255);
@@ -94,16 +97,23 @@ namespace Ludibuks.WinUI.Views.Forms
             lblAppTitle.AutoSize = true;
             lblAppTitle.BackColor = Color.Transparent;
             lblAppTitle.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAppTitle.ForeColor = Color.FromArgb(240, 240, 240);
+            lblAppTitle.ForeColor = Color.FromArgb(250, 250, 250);
+            lblAppTitle.LeftSideForeColor = Color.FromArgb(250, 250, 250);
             lblAppTitle.Location = new Point(15, 15);
             lblAppTitle.Name = "lblAppTitle";
-            lblAppTitle.Size = new Size(337, 45);
+            lblAppTitle.RightSideForeColor = Color.FromArgb(170, 171, 176);
+            lblAppTitle.Side = NightHeaderLabel.PanelSide.LeftPanel;
+            lblAppTitle.Size = new Size(391, 50);
             lblAppTitle.TabIndex = 0;
             lblAppTitle.Text = "Ludibuks Ebook Manager";
+            lblAppTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblAppTitle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            lblAppTitle.UseCompatibleTextRendering = true;
             // 
             // pnlTopActions
             // 
             pnlTopActions.BackColor = Color.FromArgb(25, 28, 38);
+            pnlTopActions.Controls.Add(btnActionGenre);
             pnlTopActions.Controls.Add(btnActionOpenFile);
             pnlTopActions.Controls.Add(btnActionRefresh);
             pnlTopActions.Controls.Add(btnActionAuthors);
@@ -111,60 +121,113 @@ namespace Ludibuks.WinUI.Views.Forms
             pnlTopActions.Controls.Add(lblAppTitle);
             pnlTopActions.Location = new Point(15, 15);
             pnlTopActions.Name = "pnlTopActions";
-            pnlTopActions.Size = new Size(1170, 75);
+            pnlTopActions.Size = new Size(1378, 75);
             pnlTopActions.TabIndex = 1;
+            // 
+            // btnActionGenre
+            // 
+            btnActionGenre.BackColor = Color.FromArgb(255, 128, 0);
+            btnActionGenre.BorderColor = Color.FromArgb(220, 223, 230);
+            btnActionGenre.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnActionGenre.DangerColor = Color.FromArgb(245, 108, 108);
+            btnActionGenre.DefaultColor = Color.FromArgb(255, 255, 255);
+            btnActionGenre.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+            btnActionGenre.ForeColor = Color.White;
+            btnActionGenre.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnActionGenre.InfoColor = Color.FromArgb(144, 147, 153);
+            btnActionGenre.Location = new Point(826, 15);
+            btnActionGenre.Name = "btnActionGenre";
+            btnActionGenre.PrimaryColor = Color.FromArgb(255, 128, 0);
+            btnActionGenre.Size = new Size(150, 45);
+            btnActionGenre.SuccessColor = Color.FromArgb(103, 194, 58);
+            btnActionGenre.TabIndex = 5;
+            btnActionGenre.Text = "👥 Género";
+            btnActionGenre.TextColor = Color.White;
+            btnActionGenre.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // btnActionOpenFile
             // 
             btnActionOpenFile.BackColor = Color.FromArgb(46, 139, 87);
+            btnActionOpenFile.BorderColor = Color.FromArgb(220, 223, 230);
+            btnActionOpenFile.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnActionOpenFile.DangerColor = Color.FromArgb(245, 108, 108);
+            btnActionOpenFile.DefaultColor = Color.FromArgb(255, 255, 255);
             btnActionOpenFile.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnActionOpenFile.ForeColor = Color.White;
-            btnActionOpenFile.Location = new Point(995, 15);
+            btnActionOpenFile.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnActionOpenFile.InfoColor = Color.FromArgb(144, 147, 153);
+            btnActionOpenFile.Location = new Point(1210, 15);
             btnActionOpenFile.Name = "btnActionOpenFile";
             btnActionOpenFile.PrimaryColor = Color.FromArgb(46, 139, 87);
             btnActionOpenFile.Size = new Size(155, 45);
+            btnActionOpenFile.SuccessColor = Color.FromArgb(103, 194, 58);
             btnActionOpenFile.TabIndex = 4;
             btnActionOpenFile.Text = "📖 Abrir Ebook";
             btnActionOpenFile.TextColor = Color.White;
+            btnActionOpenFile.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // btnActionRefresh
             // 
             btnActionRefresh.BackColor = Color.FromArgb(78, 88, 117);
+            btnActionRefresh.BorderColor = Color.FromArgb(220, 223, 230);
+            btnActionRefresh.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnActionRefresh.DangerColor = Color.FromArgb(245, 108, 108);
+            btnActionRefresh.DefaultColor = Color.FromArgb(255, 255, 255);
             btnActionRefresh.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnActionRefresh.ForeColor = Color.White;
-            btnActionRefresh.Location = new Point(830, 15);
+            btnActionRefresh.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnActionRefresh.InfoColor = Color.FromArgb(144, 147, 153);
+            btnActionRefresh.Location = new Point(1045, 15);
             btnActionRefresh.Name = "btnActionRefresh";
             btnActionRefresh.PrimaryColor = Color.FromArgb(78, 88, 117);
             btnActionRefresh.Size = new Size(150, 45);
+            btnActionRefresh.SuccessColor = Color.FromArgb(103, 194, 58);
             btnActionRefresh.TabIndex = 3;
             btnActionRefresh.Text = "🔄 Actualizar";
             btnActionRefresh.TextColor = Color.White;
+            btnActionRefresh.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // btnActionAuthors
             // 
             btnActionAuthors.BackColor = Color.FromArgb(32, 178, 170);
+            btnActionAuthors.BorderColor = Color.FromArgb(220, 223, 230);
+            btnActionAuthors.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnActionAuthors.DangerColor = Color.FromArgb(245, 108, 108);
+            btnActionAuthors.DefaultColor = Color.FromArgb(255, 255, 255);
             btnActionAuthors.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnActionAuthors.ForeColor = Color.White;
+            btnActionAuthors.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnActionAuthors.InfoColor = Color.FromArgb(144, 147, 153);
             btnActionAuthors.Location = new Point(665, 15);
             btnActionAuthors.Name = "btnActionAuthors";
             btnActionAuthors.PrimaryColor = Color.FromArgb(32, 178, 170);
             btnActionAuthors.Size = new Size(150, 45);
+            btnActionAuthors.SuccessColor = Color.FromArgb(103, 194, 58);
             btnActionAuthors.TabIndex = 2;
             btnActionAuthors.Text = "👥 Autores";
             btnActionAuthors.TextColor = Color.White;
+            btnActionAuthors.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // btnActionAdd
             // 
             btnActionAdd.BackColor = Color.FromArgb(64, 158, 255);
+            btnActionAdd.BorderColor = Color.FromArgb(220, 223, 230);
+            btnActionAdd.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnActionAdd.DangerColor = Color.FromArgb(245, 108, 108);
+            btnActionAdd.DefaultColor = Color.FromArgb(255, 255, 255);
             btnActionAdd.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnActionAdd.ForeColor = Color.White;
+            btnActionAdd.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnActionAdd.InfoColor = Color.FromArgb(144, 147, 153);
             btnActionAdd.Location = new Point(490, 15);
             btnActionAdd.Name = "btnActionAdd";
             btnActionAdd.PrimaryColor = Color.FromArgb(64, 158, 255);
             btnActionAdd.Size = new Size(160, 45);
+            btnActionAdd.SuccessColor = Color.FromArgb(103, 194, 58);
             btnActionAdd.TabIndex = 1;
             btnActionAdd.Text = "➕ Nuevo Libro";
             btnActionAdd.TextColor = Color.White;
+            btnActionAdd.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // pnlLeftFilter
             // 
@@ -266,7 +329,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblSearch.ForeColor = Color.FromArgb(180, 185, 200);
             lblSearch.Location = new Point(15, 25);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(190, 25);
+            lblSearch.Size = new Size(173, 25);
             lblSearch.TabIndex = 1;
             lblSearch.Text = "Título / Autor / ISBN";
             // 
@@ -278,7 +341,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblFilterHeader.ForeColor = Color.FromArgb(220, 225, 235);
             lblFilterHeader.Location = new Point(15, 0);
             lblFilterHeader.Name = "lblFilterHeader";
-            lblFilterHeader.Size = new Size(224, 30);
+            lblFilterHeader.Size = new Size(229, 30);
             lblFilterHeader.TabIndex = 0;
             lblFilterHeader.Text = "🔍 Criterios Búsqueda";
             // 
@@ -339,7 +402,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblCatalogHeader.ForeColor = Color.FromArgb(220, 225, 235);
             lblCatalogHeader.Location = new Point(15, 10);
             lblCatalogHeader.Name = "lblCatalogHeader";
-            lblCatalogHeader.Size = new Size(257, 30);
+            lblCatalogHeader.Size = new Size(254, 30);
             lblCatalogHeader.TabIndex = 0;
             lblCatalogHeader.Text = "📚 Catálogo de Archivos";
             // 
@@ -361,15 +424,23 @@ namespace Ludibuks.WinUI.Views.Forms
             // btnOpenSelectedFile
             // 
             btnOpenSelectedFile.BackColor = Color.FromArgb(46, 139, 87);
+            btnOpenSelectedFile.BorderColor = Color.FromArgb(220, 223, 230);
+            btnOpenSelectedFile.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnOpenSelectedFile.DangerColor = Color.FromArgb(245, 108, 108);
+            btnOpenSelectedFile.DefaultColor = Color.FromArgb(255, 255, 255);
             btnOpenSelectedFile.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnOpenSelectedFile.ForeColor = Color.White;
+            btnOpenSelectedFile.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnOpenSelectedFile.InfoColor = Color.FromArgb(144, 147, 153);
             btnOpenSelectedFile.Location = new Point(15, 560);
             btnOpenSelectedFile.Name = "btnOpenSelectedFile";
             btnOpenSelectedFile.PrimaryColor = Color.FromArgb(46, 139, 87);
             btnOpenSelectedFile.Size = new Size(280, 45);
+            btnOpenSelectedFile.SuccessColor = Color.FromArgb(103, 194, 58);
             btnOpenSelectedFile.TabIndex = 6;
             btnOpenSelectedFile.Text = "🚀 Abrir Archivo";
             btnOpenSelectedFile.TextColor = Color.White;
+            btnOpenSelectedFile.WarningColor = Color.FromArgb(230, 162, 60);
             // 
             // lblPreviewPrice
             // 
@@ -379,7 +450,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblPreviewPrice.ForeColor = Color.FromArgb(64, 158, 255);
             lblPreviewPrice.Location = new Point(15, 450);
             lblPreviewPrice.Name = "lblPreviewPrice";
-            lblPreviewPrice.Size = new Size(116, 28);
+            lblPreviewPrice.Size = new Size(128, 28);
             lblPreviewPrice.TabIndex = 5;
             lblPreviewPrice.Text = "Precio: $0.00";
             // 
@@ -391,7 +462,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblPreviewIsbn.ForeColor = Color.FromArgb(180, 185, 200);
             lblPreviewIsbn.Location = new Point(15, 410);
             lblPreviewIsbn.Name = "lblPreviewIsbn";
-            lblPreviewIsbn.Size = new Size(60, 25);
+            lblPreviewIsbn.Size = new Size(66, 25);
             lblPreviewIsbn.TabIndex = 4;
             lblPreviewIsbn.Text = "ISBN: -";
             // 
@@ -403,7 +474,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblPreviewAuthors.ForeColor = Color.FromArgb(200, 205, 220);
             lblPreviewAuthors.Location = new Point(15, 370);
             lblPreviewAuthors.Name = "lblPreviewAuthors";
-            lblPreviewAuthors.Size = new Size(95, 27);
+            lblPreviewAuthors.Size = new Size(101, 25);
             lblPreviewAuthors.TabIndex = 3;
             lblPreviewAuthors.Text = "Autor: N/A";
             // 
@@ -411,12 +482,18 @@ namespace Ludibuks.WinUI.Views.Forms
             // 
             lblPreviewBookTitle.BackColor = Color.Transparent;
             lblPreviewBookTitle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lblPreviewBookTitle.ForeColor = Color.White;
+            lblPreviewBookTitle.ForeColor = Color.FromArgb(250, 250, 250);
+            lblPreviewBookTitle.LeftSideForeColor = Color.FromArgb(250, 250, 250);
             lblPreviewBookTitle.Location = new Point(15, 300);
             lblPreviewBookTitle.Name = "lblPreviewBookTitle";
+            lblPreviewBookTitle.RightSideForeColor = Color.FromArgb(170, 171, 176);
+            lblPreviewBookTitle.Side = NightHeaderLabel.PanelSide.LeftPanel;
             lblPreviewBookTitle.Size = new Size(280, 60);
             lblPreviewBookTitle.TabIndex = 2;
             lblPreviewBookTitle.Text = "Seleccione un Libro";
+            lblPreviewBookTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblPreviewBookTitle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            lblPreviewBookTitle.UseCompatibleTextRendering = true;
             // 
             // pnlCoverCard
             // 
@@ -432,12 +509,18 @@ namespace Ludibuks.WinUI.Views.Forms
             lblCoverIcon.AutoSize = true;
             lblCoverIcon.BackColor = Color.Transparent;
             lblCoverIcon.Font = new Font("Segoe UI", 48F);
-            lblCoverIcon.ForeColor = Color.FromArgb(100, 110, 135);
+            lblCoverIcon.ForeColor = Color.FromArgb(250, 250, 250);
+            lblCoverIcon.LeftSideForeColor = Color.FromArgb(250, 250, 250);
             lblCoverIcon.Location = new Point(45, 45);
             lblCoverIcon.Name = "lblCoverIcon";
-            lblCoverIcon.Size = new Size(157, 128);
+            lblCoverIcon.RightSideForeColor = Color.FromArgb(170, 171, 176);
+            lblCoverIcon.Side = NightHeaderLabel.PanelSide.LeftPanel;
+            lblCoverIcon.Size = new Size(96, 143);
             lblCoverIcon.TabIndex = 0;
             lblCoverIcon.Text = "📖";
+            lblCoverIcon.TextAlign = ContentAlignment.MiddleCenter;
+            lblCoverIcon.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            lblCoverIcon.UseCompatibleTextRendering = true;
             // 
             // lblPreviewHeader
             // 
@@ -447,7 +530,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblPreviewHeader.ForeColor = Color.FromArgb(220, 225, 235);
             lblPreviewHeader.Location = new Point(15, 10);
             lblPreviewHeader.Name = "lblPreviewHeader";
-            lblPreviewHeader.Size = new Size(239, 30);
+            lblPreviewHeader.Size = new Size(199, 30);
             lblPreviewHeader.TabIndex = 0;
             lblPreviewHeader.Text = "👁️ Previsualización";
             // 
@@ -456,7 +539,7 @@ namespace Ludibuks.WinUI.Views.Forms
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 26, 36);
-            ClientSize = new Size(1200, 745);
+            ClientSize = new Size(1481, 745);
             Controls.Add(pnlRightPreview);
             Controls.Add(pnlCenterListing);
             Controls.Add(pnlLeftFilter);
@@ -510,5 +593,6 @@ namespace Ludibuks.WinUI.Views.Forms
         private NightLabel lblPreviewIsbn;
         private NightLabel lblPreviewPrice;
         private HopeButton btnOpenSelectedFile;
+        private HopeButton btnActionGenre;
     }
 }

@@ -45,6 +45,10 @@ namespace Ludibuks.WinUI
             services.AddScoped<IAuthorView>(sp => sp.GetRequiredService<FrmAuthors>());
             services.AddScoped<AuthorPresenter>();
 
+            services.AddScoped<FrmGenres>();
+            services.AddScoped<IGenreView>(sp => sp.GetRequiredService<FrmGenres>());
+            services.AddScoped<GenrePresenter>();
+
             services.AddSingleton<FrmMain>();
             services.AddSingleton<IMainView>(sp => sp.GetRequiredService<FrmMain>());
             services.AddSingleton<MainPresenter>();
