@@ -39,6 +39,10 @@ namespace Ludibuks.WinUI
             services.AddSingleton<IBookView>(sp => sp.GetRequiredService<FrmBooks>());
             services.AddSingleton<BookPresenter>();
 
+            services.AddSingleton<FrmMain>();
+            services.AddSingleton<IMainView>(sp => sp.GetRequiredService<FrmMain>());
+            services.AddSingleton<MainPresenter>();
+
             using var serviceProvider = services.BuildServiceProvider();
 
             // 4. Migración automática de SQLite al arrancar
@@ -53,11 +57,12 @@ namespace Ludibuks.WinUI
                 return;
             }
 
-            // 5. Resolver el Presenter primero (instancia FrmBooks y conecta los eventos), luego obtener el mismo Form para ejecutarlo
-            var presenter = serviceProvider.GetRequiredService<BookPresenter>();
-            var form = serviceProvider.GetRequiredService<FrmBooks>();
+            // 5. Inicializar Presenters y ejecutar la ventana principal FrmMain
+            serviceProvider.GetRequiredService<BookPresenter>();
+            serviceProvider.GetRequiredService<MainPresenter>();
+            var mainForm = serviceProvider.GetRequiredService<FrmMain>();
 
-            System.Windows.Forms.Application.Run(form);
+            System.Windows.Forms.Application.Run(mainForm);
         }
     }
 }
