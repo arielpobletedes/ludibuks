@@ -47,10 +47,14 @@ namespace Ludibuks.WinUI.Views.Forms
             lblGridHeader = new NightLabel();
             pnlFormCard = new System.Windows.Forms.Panel();
             pnlAuthorsCard = new ReaLTaiizor.Controls.Panel();
+            panel1 = new ReaLTaiizor.Controls.Panel();
+            nightLabel1 = new NightLabel();
+            clbGenres = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)numPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridBooks).BeginInit();
             pnlFormCard.SuspendLayout();
             pnlAuthorsCard.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // nightControlBox1
@@ -63,9 +67,11 @@ namespace Ludibuks.WinUI.Views.Forms
             nightControlBox1.DisableMaximizeColor = Color.FromArgb(105, 105, 105);
             nightControlBox1.DisableMinimizeColor = Color.FromArgb(105, 105, 105);
             nightControlBox1.EnableCloseColor = Color.FromArgb(160, 160, 160);
+            nightControlBox1.EnableMaximizeButton = true;
             nightControlBox1.EnableMaximizeColor = Color.FromArgb(160, 160, 160);
+            nightControlBox1.EnableMinimizeButton = true;
             nightControlBox1.EnableMinimizeColor = Color.FromArgb(160, 160, 160);
-            nightControlBox1.Location = new Point(810, 0);
+            nightControlBox1.Location = new Point(1834, 0);
             nightControlBox1.MaximizeHoverColor = Color.FromArgb(15, 255, 255, 255);
             nightControlBox1.MaximizeHoverForeColor = Color.White;
             nightControlBox1.MinimizeHoverColor = Color.FromArgb(15, 255, 255, 255);
@@ -80,11 +86,17 @@ namespace Ludibuks.WinUI.Views.Forms
             lblHeader.BackColor = Color.Transparent;
             lblHeader.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHeader.ForeColor = Color.FromArgb(240, 240, 240);
+            lblHeader.LeftSideForeColor = Color.FromArgb(250, 250, 250);
             lblHeader.Location = new Point(25, 18);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(330, 45);
+            lblHeader.RightSideForeColor = Color.FromArgb(170, 171, 176);
+            lblHeader.Side = NightHeaderLabel.PanelSide.LeftPanel;
+            lblHeader.Size = new Size(360, 50);
             lblHeader.TabIndex = 1;
             lblHeader.Text = "Ludibuks Ebook Library";
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+            lblHeader.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            lblHeader.UseCompatibleTextRendering = true;
             // 
             // lblTitle
             // 
@@ -94,7 +106,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblTitle.ForeColor = Color.FromArgb(180, 185, 200);
             lblTitle.Location = new Point(15, 15);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(140, 25);
+            lblTitle.Size = new Size(130, 25);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Título del Libro";
             // 
@@ -117,7 +129,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblIsbn.ForeColor = Color.FromArgb(180, 185, 200);
             lblIsbn.Location = new Point(15, 90);
             lblIsbn.Name = "lblIsbn";
-            lblIsbn.Size = new Size(51, 25);
+            lblIsbn.Size = new Size(50, 25);
             lblIsbn.TabIndex = 2;
             lblIsbn.Text = "ISBN";
             // 
@@ -179,7 +191,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblAuthors.ForeColor = Color.FromArgb(180, 185, 200);
             lblAuthors.Location = new Point(15, 15);
             lblAuthors.Name = "lblAuthors";
-            lblAuthors.Size = new Size(180, 25);
+            lblAuthors.Size = new Size(177, 25);
             lblAuthors.TabIndex = 0;
             lblAuthors.Text = "Seleccionar Autor(es)";
             // 
@@ -231,7 +243,7 @@ namespace Ludibuks.WinUI.Views.Forms
             gridBooks.RowHeadersWidth = 51;
             gridBooks.RowTemplate.Height = 35;
             gridBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridBooks.Size = new Size(895, 240);
+            gridBooks.Size = new Size(1693, 433);
             gridBooks.TabIndex = 4;
             // 
             // lblGridHeader
@@ -242,7 +254,7 @@ namespace Ludibuks.WinUI.Views.Forms
             lblGridHeader.ForeColor = Color.FromArgb(220, 225, 235);
             lblGridHeader.Location = new Point(25, 332);
             lblGridHeader.Name = "lblGridHeader";
-            lblGridHeader.Size = new Size(224, 32);
+            lblGridHeader.Size = new Size(218, 32);
             lblGridHeader.TabIndex = 3;
             lblGridHeader.Text = "Catálogo de Libros";
             // 
@@ -266,17 +278,58 @@ namespace Ludibuks.WinUI.Views.Forms
             pnlAuthorsCard.BackColor = Color.FromArgb(33, 37, 48);
             pnlAuthorsCard.Controls.Add(lblAuthors);
             pnlAuthorsCard.Controls.Add(clbAuthors);
+            pnlAuthorsCard.EdgeColor = Color.FromArgb(32, 41, 50);
             pnlAuthorsCard.Location = new Point(470, 75);
             pnlAuthorsCard.Name = "pnlAuthorsCard";
+            pnlAuthorsCard.Padding = new Padding(5);
             pnlAuthorsCard.Size = new Size(450, 250);
+            pnlAuthorsCard.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             pnlAuthorsCard.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(33, 37, 48);
+            panel1.Controls.Add(nightLabel1);
+            panel1.Controls.Add(clbGenres);
+            panel1.EdgeColor = Color.FromArgb(32, 41, 50);
+            panel1.Location = new Point(948, 75);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(5);
+            panel1.Size = new Size(450, 250);
+            panel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            panel1.TabIndex = 5;
+            // 
+            // nightLabel1
+            // 
+            nightLabel1.AutoSize = true;
+            nightLabel1.BackColor = Color.Transparent;
+            nightLabel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nightLabel1.ForeColor = Color.FromArgb(180, 185, 200);
+            nightLabel1.Location = new Point(15, 15);
+            nightLabel1.Name = "nightLabel1";
+            nightLabel1.Size = new Size(180, 25);
+            nightLabel1.TabIndex = 0;
+            nightLabel1.Text = "Seleccionar Género(s)";
+            // 
+            // clbGenres
+            // 
+            clbGenres.BackColor = Color.FromArgb(43, 48, 62);
+            clbGenres.BorderStyle = BorderStyle.None;
+            clbGenres.Font = new Font("Segoe UI", 9.5F);
+            clbGenres.ForeColor = Color.FromArgb(230, 230, 230);
+            clbGenres.FormattingEnabled = true;
+            clbGenres.Location = new Point(15, 49);
+            clbGenres.Name = "clbGenres";
+            clbGenres.Size = new Size(420, 180);
+            clbGenres.TabIndex = 1;
             // 
             // FrmBooks
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 26, 36);
-            ClientSize = new Size(950, 635);
+            ClientSize = new Size(1974, 805);
+            Controls.Add(panel1);
             Controls.Add(pnlAuthorsCard);
             Controls.Add(pnlFormCard);
             Controls.Add(lblGridHeader);
@@ -293,6 +346,8 @@ namespace Ludibuks.WinUI.Views.Forms
             pnlFormCard.PerformLayout();
             pnlAuthorsCard.ResumeLayout(false);
             pnlAuthorsCard.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -314,5 +369,8 @@ namespace Ludibuks.WinUI.Views.Forms
         private NightLabel lblGridHeader;
         private System.Windows.Forms.Panel pnlFormCard;
         private ReaLTaiizor.Controls.Panel pnlAuthorsCard;
+        private ReaLTaiizor.Controls.Panel panel1;
+        private NightLabel nightLabel1;
+        private CheckedListBox clbGenres;
     }
 }

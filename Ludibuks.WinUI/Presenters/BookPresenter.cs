@@ -8,16 +8,19 @@ public class BookPresenter
 {
     private readonly IBookView _view;
     private readonly IBookAppService _bookAppService;
-    private readonly IAuthorAppService _authorAppService; // Servicio para listar autores
+    private readonly IAuthorAppService _authorAppService;
+    private readonly IGenreAppService _genreAppService;
 
     public BookPresenter(
         IBookView view,
         IBookAppService bookAppService,
-        IAuthorAppService authorAppService)
+        IAuthorAppService authorAppService,
+        IGenreAppService genreAppService)
     {
         _view = view;
         _bookAppService = bookAppService;
         _authorAppService = authorAppService;
+        _genreAppService = genreAppService;
 
         _view.ViewLoaded += async (s, e) => await InitializeAsync();
         _view.SaveClicked += async (s, e) => await SaveBookAsync();
@@ -27,11 +30,13 @@ public class BookPresenter
     {
         try
         {
-            // 1. Cargar autores para el CheckedListBox
             var authors = await _authorAppService.GetAllAuthorsLookupAsync();
             _view.SetAuthorList(authors);
 
-            // 2. Cargar libros existentes para la grilla
+            var genres = await _genreAppService.GetAllGenresLookupAsync();
+            _view.SetGenreList(genres);
+
+
             await LoadBooksAsync();
         }
         catch (Exception ex)
@@ -58,11 +63,20 @@ public class BookPresenter
                 return;
             }
 
+            var genreIds = _view.SelectedGenreIds;
+
+            if (genreIds.Count == 0)
+            {
+                _view.ShowMessage("Debes seleccionar al menos un genero para el libro.", isError: true);
+                return;
+            }
+
             var dto = new CreateBookDto(
                 _view.TitleInput,
                 _view.IsbnInput,
                 _view.PriceInput,
-                authorIds
+                authorIds,
+                genreIds
             );
 
             await _bookAppService.CreateBookAsync(dto);
