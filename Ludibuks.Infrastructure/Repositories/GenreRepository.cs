@@ -5,25 +5,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ludibuks.Infrastructure.Repositories;
 
-public class AuthorRepository : IAuthorRepository
+public class GenreRepository : IGenreRepository
 {
     private readonly LudibuksDbContext _context;
 
-    public AuthorRepository(LudibuksDbContext context)
+    public GenreRepository(LudibuksDbContext context)
     {
         _context = context;
     }
 
-    public async Task<IReadOnlyList<Author>> GetByIdsAsync(IEnumerable<int> ids, CancellationToken ct = default)
+    public async Task<IReadOnlyList<Genre>> GetByIdsAsync(IEnumerable<int> ids, CancellationToken ct = default)
     {
-        return await _context.Authors
+        return await _context.Genres
             .Where(a => ids.Contains(a.Id))
             .ToListAsync(ct);
     }
 
-    public async Task<IReadOnlyList<Author>> GetAllAsync(CancellationToken ct = default)
+    public async Task<IReadOnlyList<Genre>> GetAllAsync(CancellationToken ct = default)
     {
-        return await _context.Authors
+        return await _context.Genres
             .AsNoTracking()
             .ToListAsync(ct);
     }

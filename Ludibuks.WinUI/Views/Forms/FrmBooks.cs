@@ -1,3 +1,4 @@
+using Lubikus.Core.Entities;
 using Ludibuks.Application.DTOs;
 using Ludibuks.WinUI.Views.Interfaces;
 using System.ComponentModel;
@@ -41,6 +42,19 @@ public partial class FrmBooks : System.Windows.Forms.Form, IBookView
     }
 
     [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public IReadOnlyList<int> SelectedGenreIds
+    {
+        get
+        {
+            return clbGenres.CheckedItems
+                .OfType<GenreLookupDto>()
+                .Select(a => a.Id)
+                .ToList();
+        }
+    }
+
+    [Browsable(false)]
     public event EventHandler? ViewLoaded;
 
     [Browsable(false)]
@@ -78,6 +92,13 @@ public partial class FrmBooks : System.Windows.Forms.Form, IBookView
         }).ToList();
 
         gridBooks.DataSource = viewModels;
+    }
+
+    public void SetGenreList(IReadOnlyList<GenreLookupDto> genres)
+    {
+        clbGenres.DataSource = genres.ToList();
+        clbGenres.DisplayMember = nameof(GenreLookupDto.Name);
+        clbGenres.ValueMember = nameof(GenreLookupDto.Id);
     }
 
     public void ShowMessage(string message, bool isError = false)
