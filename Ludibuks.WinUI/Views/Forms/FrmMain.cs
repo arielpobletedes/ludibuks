@@ -1,6 +1,7 @@
 using Ludibuks.Application.DTOs;
 using Ludibuks.WinUI.Presenters;
 using Ludibuks.WinUI.Views.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -25,7 +26,7 @@ public partial class FrmMain : Form, IMainView
 
         this.gridBooks.SelectionChanged += (s, e) => BookSelected?.Invoke(this, EventArgs.Empty);
 
-        this.btnActionAdd.Click += (s, e) => AddBookClicked?.Invoke(this, EventArgs.Empty);
+        this.btnActionAdd.Click += (s, e) => OpenAddBookDialog();
         this.btnActionRefresh.Click += (s, e) => RefreshClicked?.Invoke(this, EventArgs.Empty);
         this.btnActionOpenFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
         this.btnOpenSelectedFile.Click += (s, e) => OpenFileClicked?.Invoke(this, EventArgs.Empty);
@@ -36,10 +37,18 @@ public partial class FrmMain : Form, IMainView
 
     public void OpenAuthorsDialog()
     {
-        using var scope = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.CreateScope(_serviceProvider);
-        var presenter = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<AuthorPresenter>(scope.ServiceProvider);
-        var frmAuthors = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<FrmAuthors>(scope.ServiceProvider);
+        using var scope = _serviceProvider.CreateScope();
+        var presenter = scope.ServiceProvider.GetRequiredService<AuthorPresenter>();
+        var frmAuthors = scope.ServiceProvider.GetRequiredService<FrmAuthors>();
         frmAuthors.ShowDialog(this);
+    }
+
+    public void OpenAddBookDialog()
+    {
+        using var scope = _serviceProvider.CreateScope();
+        var presenter = scope.ServiceProvider.GetRequiredService<BookPresenter>();
+        var frmBooks = scope.ServiceProvider.GetRequiredService<FrmBooks>();
+        frmBooks.ShowDialog(this);
     }
 
     [Browsable(false)]
@@ -143,13 +152,6 @@ public partial class FrmMain : Form, IMainView
         }
     }
 
-    public void OpenAddBookDialog()
-    {
-        using var scope = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.CreateScope(_serviceProvider);
-        var frmBooks = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<FrmBooks>(scope.ServiceProvider);
-        frmBooks.ShowDialog(this);
-    }
-
     private void ResetFilters()
     {
         txtSearch.Text = string.Empty;
@@ -157,3 +159,4 @@ public partial class FrmMain : Form, IMainView
         if (cmbFormat.Items.Count > 0) cmbFormat.SelectedIndex = 0;
     }
 }
+
